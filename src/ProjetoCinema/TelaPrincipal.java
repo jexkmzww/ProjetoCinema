@@ -30,12 +30,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelFilmes = new javax.swing.JLabel();
         jButton127horas = new javax.swing.JButton();
         jButtonAHospedeira = new javax.swing.JButton();
         jButtonFastNFurious = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jButtonMeuNomeNaoEJhonny = new javax.swing.JButton();
         jButtonStarWars = new javax.swing.JButton();
         jButtonTheDarkKnight = new javax.swing.JButton();
@@ -58,10 +56,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel1.setText("Filmes:");
-        jInternalFrame1.getContentPane().add(jLabel1);
-        jLabel1.setBounds(240, 0, 70, 21);
+        jLabelFilmes.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
+        jLabelFilmes.setText("Filmes:");
+        jInternalFrame1.getContentPane().add(jLabelFilmes);
+        jLabelFilmes.setBounds(240, 0, 70, 21);
 
         jButton127horas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/123horas.jpg"))); // NOI18N
         jButton127horas.addActionListener(new java.awt.event.ActionListener() {
@@ -89,14 +87,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jInternalFrame1.getContentPane().add(jButtonFastNFurious);
         jButtonFastNFurious.setBounds(410, 30, 150, 230);
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/123horas.jpg"))); // NOI18N
-        jInternalFrame1.getContentPane().add(jButton6);
-        jButton6.setBounds(220, 30, 150, 230);
-
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/123horas.jpg"))); // NOI18N
-        jInternalFrame1.getContentPane().add(jButton7);
-        jButton7.setBounds(10, 30, 150, 230);
 
         jButtonMeuNomeNaoEJhonny.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/meuNomeNaoEJohnny.jpg"))); // NOI18N
         jButtonMeuNomeNaoEJhonny.addActionListener(new java.awt.event.ActionListener() {
@@ -280,15 +270,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton127horas;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButtonAHospedeira;
     private javax.swing.JButton jButtonFastNFurious;
     private javax.swing.JButton jButtonMeuNomeNaoEJhonny;
     private javax.swing.JButton jButtonStarWars;
     private javax.swing.JButton jButtonTheDarkKnight;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelFilmes;
     private javax.swing.JMenuBar jMenuBarMenuGeral;
     private javax.swing.JMenuItem jMenuItemCadastrarUsuario;
     private javax.swing.JMenuItem jMenuItemMenuPrincipal;
