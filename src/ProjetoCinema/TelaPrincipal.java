@@ -126,6 +126,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuMenu.add(jMenuItemMenuPrincipal);
 
         jMenuItemCadastrarUsuario.setText("Cadastrar usuário");
+        jMenuItemCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadastrarUsuarioActionPerformed(evt);
+            }
+        });
         jMenuMenu.add(jMenuItemCadastrarUsuario);
 
         jMenuItemTrocarUsuario.setText("Trocar de usuário");
@@ -232,6 +237,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         detalhesFilme.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButtonTheDarkKnightActionPerformed
+
+    private void jMenuItemCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarUsuarioActionPerformed
+        CadastroUsuario cadastroUsuario = new CadastroUsuario();
+        cadastroUsuario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItemCadastrarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

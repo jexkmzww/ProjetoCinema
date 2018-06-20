@@ -79,7 +79,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldLogin);
-        jTextFieldLogin.setBounds(160, 80, 280, 27);
+        jTextFieldLogin.setBounds(160, 80, 390, 27);
 
         jPasswordFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -87,7 +87,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jPasswordFieldSenha);
-        jPasswordFieldSenha.setBounds(160, 120, 280, 27);
+        jPasswordFieldSenha.setBounds(160, 120, 390, 27);
 
         jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo-preto-brilhante_1053-680.jpg"))); // NOI18N
         jLabelFundoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
