@@ -51,8 +51,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jInternalFrame1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jInternalFrame1.setClosable(true);
-        jInternalFrame1.setResizable(true);
         jInternalFrame1.setTitle("Compra de ingressos");
+        jInternalFrame1.setToolTipText("");
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
@@ -240,8 +240,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadastrarUsuarioActionPerformed
         CadastroUsuario cadastroUsuario = new CadastroUsuario();
-        cadastroUsuario.setVisible(true);
-        dispose();
+        cadastroUsuario.setVisible(true);        
     }//GEN-LAST:event_jMenuItemCadastrarUsuarioActionPerformed
 
     /**

@@ -109,8 +109,8 @@
           </Border>
         </Property>
         <Property name="closable" type="boolean" value="true"/>
-        <Property name="resizable" type="boolean" value="true"/>
         <Property name="title" type="java.lang.String" value="Compra de ingressos"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
 
