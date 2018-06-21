@@ -6,8 +6,6 @@
 package Controle;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,7 +28,16 @@ public class ConexaoDB {
             connection = DriverManager.getConnection(caminho, usuario, senha);
             JOptionPane.showMessageDialog(null, "Conectado com sucesso!");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao conectar com o banco de dados:\n" + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao conectar com o banco de dados:\n" + ex.getMessage());
+        }
+    }
+    
+    public void desconecta (){
+        try {
+            connection.close();
+            JOptionPane.showMessageDialog(null, "Database desconectado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao desconectar com database:\n" +ex.getMessage());
         }
     }
     

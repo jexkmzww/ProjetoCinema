@@ -5,7 +5,7 @@
  */
 package ProjetoCinema;
 
-import javax.swing.JButton;
+import Controle.ConexaoDB;
 
 /**
  *
@@ -13,11 +13,14 @@ import javax.swing.JButton;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    ConexaoDB conectaDB = new ConexaoDB();
+     
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        conectaDB.conexao();
     }
 
     /**
@@ -187,6 +190,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemTrocarUsuarioActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
+        conectaDB.desconecta();
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 

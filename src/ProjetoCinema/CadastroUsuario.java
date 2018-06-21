@@ -5,7 +5,9 @@
  */
 package ProjetoCinema;
 
-import javax.swing.JOptionPane;
+import Controle.ConexaoDB;
+import Controle.ControleUsuario;
+import Modelo.ModeloUsuario;
 
 /**
  *
@@ -13,6 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class CadastroUsuario extends javax.swing.JFrame {
 
+    ModeloUsuario modUsu = new ModeloUsuario();
+    ControleUsuario controlUsu = new ControleUsuario();
+    ConexaoDB conect = new ConexaoDB();
+    
     /**
      * Creates new form CadastroUsuario
      */
@@ -197,7 +203,15 @@ public class CadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldConfirmaSenhaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        
+        modUsu.setNome(jFormattedTextFieldNome.getText());
+        modUsu.setSobrenome(jFormattedTextFieldSobrenome.getText());
+        //modUsu.setCpf(Integer.parseInt(jFormattedTextFieldCPF.getText()));
+        modUsu.setCpf(jFormattedTextFieldCPF.getText());
+        modUsu.setLogin(jFormattedTextFieldLogin.getText());
+        modUsu.setSenha(jPasswordFieldSenha.getText());
+        modUsu.setEmail(jFormattedTextFieldEmail.getText());
+        modUsu.setTelefone(jFormattedTextFieldTelefone.getText());
+        controlUsu.Gravar(modUsu);
         
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
