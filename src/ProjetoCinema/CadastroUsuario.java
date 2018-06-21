@@ -56,6 +56,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jButtonGravar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
+        jButtonNovoUsuario = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -78,11 +79,26 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
         jLabelCPF.setText("CPF:");
 
+        jFormattedTextFieldCPF.setEnabled(false);
+
+        jFormattedTextFieldNome.setEnabled(false);
+
+        jFormattedTextFieldSobrenome.setEnabled(false);
+
+        jPasswordFieldSenha.setEnabled(false);
+
+        jFormattedTextFieldLogin.setEnabled(false);
+
+        jPasswordFieldConfirmaSenha.setEnabled(false);
         jPasswordFieldConfirmaSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldConfirmaSenhaActionPerformed(evt);
             }
         });
+
+        jFormattedTextFieldEmail.setEnabled(false);
+
+        jFormattedTextFieldTelefone.setEnabled(false);
 
         jButtonVoltar.setText("Voltar");
         jButtonVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +108,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         });
 
         jButtonGravar.setText("Gravar");
+        jButtonGravar.setEnabled(false);
         jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGravarActionPerformed(evt);
@@ -99,8 +116,17 @@ public class CadastroUsuario extends javax.swing.JFrame {
         });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setEnabled(false);
 
         jButtonEditar.setText("Editar");
+        jButtonEditar.setEnabled(false);
+
+        jButtonNovoUsuario.setText("Novo");
+        jButtonNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,6 +136,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonNovoUsuario)
+                        .addGap(18, 18, 18)
                         .addComponent(jButtonEditar)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonExcluir)
@@ -184,7 +212,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
                     .addComponent(jButtonVoltar)
                     .addComponent(jButtonGravar)
                     .addComponent(jButtonExcluir)
-                    .addComponent(jButtonEditar))
+                    .addComponent(jButtonEditar)
+                    .addComponent(jButtonNovoUsuario))
                 .addGap(37, 37, 37))
         );
 
@@ -213,7 +242,29 @@ public class CadastroUsuario extends javax.swing.JFrame {
         modUsu.setTelefone(jFormattedTextFieldTelefone.getText());
         controlUsu.Gravar(modUsu);
         
+        jFormattedTextFieldNome.setText("");
+        jFormattedTextFieldSobrenome.setText("");
+        jFormattedTextFieldCPF.setText("");
+        jFormattedTextFieldLogin.setText("");
+        jPasswordFieldSenha.setText("");
+        jPasswordFieldConfirmaSenha.setText("");
+        jFormattedTextFieldEmail.setText("");
+        jFormattedTextFieldTelefone.setText("");
+        jButtonGravar.setEnabled(false);
     }//GEN-LAST:event_jButtonGravarActionPerformed
+
+    private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
+        jFormattedTextFieldNome.setEnabled(true);
+        jFormattedTextFieldSobrenome.setEnabled(true);
+        jFormattedTextFieldCPF.setEnabled(true);
+        jFormattedTextFieldLogin.setEnabled(true);
+        jPasswordFieldSenha.setEnabled(true);
+        jPasswordFieldConfirmaSenha.setEnabled(true);
+        jFormattedTextFieldEmail.setEnabled(true);
+        jFormattedTextFieldTelefone.setEnabled(true);
+        jButtonGravar.setEnabled(true);
+        
+    }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,6 +313,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonGravar;
+    private javax.swing.JButton jButtonNovoUsuario;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
