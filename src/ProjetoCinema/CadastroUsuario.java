@@ -5,9 +5,9 @@
  */
 package ProjetoCinema;
 
-import Controle.ConexaoDB;
-import Controle.ControleUsuario;
-import Modelo.ModeloUsuario;
+import modeloConnection.ConexaoDB;
+import modeloDao.DaoUsuario;
+import modeloBeans.BeansUsuario;
 
 /**
  *
@@ -15,10 +15,10 @@ import Modelo.ModeloUsuario;
  */
 public class CadastroUsuario extends javax.swing.JFrame {
 
-    ModeloUsuario modUsu = new ModeloUsuario();
-    ControleUsuario controlUsu = new ControleUsuario();
+    BeansUsuario modUsu = new BeansUsuario();
+    DaoUsuario controlUsu = new DaoUsuario();
     ConexaoDB conect = new ConexaoDB();
-    
+    int flag =0;
     /**
      * Creates new form CadastroUsuario
      */
@@ -57,6 +57,13 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
         jButtonNovoUsuario = new javax.swing.JButton();
+        jLabelCadastroDeUsuario = new javax.swing.JLabel();
+        jLabelPesquisaPeloCpf = new javax.swing.JLabel();
+        jButtonPesquisar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+        jFormattedTextFieldPesquisa = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -120,6 +127,11 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
         jButtonEditar.setText("Editar");
         jButtonEditar.setEnabled(false);
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
 
         jButtonNovoUsuario.setText("Novo");
         jButtonNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -128,14 +140,83 @@ public class CadastroUsuario extends javax.swing.JFrame {
             }
         });
 
+        jLabelCadastroDeUsuario.setText("Cadastro de usuário");
+        jLabelCadastroDeUsuario.setVerifyInputWhenFocusTarget(false);
+
+        jLabelPesquisaPeloCpf.setText("Pesquisar pelo CPF:");
+
+        jButtonPesquisar.setText("Pesquisar");
+        jButtonPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("ID:");
+
+        jTextFieldID.setEnabled(false);
+        jTextFieldID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelConfirmaSenha)
+                                    .addComponent(jLabelEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelLogin)
+                                    .addComponent(jLabelSenha))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabelNomeUsuario)
+                                        .addComponent(jLabelSobrenomeUsuario)
+                                        .addComponent(jLabelCPF)
+                                        .addComponent(jLabelPesquisaPeloCpf)
+                                        .addComponent(jLabel1))
+                                    .addGap(5, 5, 5)))
+                            .addGap(3, 3, 3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jFormattedTextFieldLogin, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jFormattedTextFieldSobrenome, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jFormattedTextFieldNome, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jFormattedTextFieldEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jPasswordFieldConfirmaSenha)
+                                .addComponent(jFormattedTextFieldTelefone)
+                                .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(4, 4, 4)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jFormattedTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButtonPesquisar)))))
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabelCadastroDeUsuario)
+                            .addGap(197, 197, 197)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
                         .addComponent(jButtonNovoUsuario)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonEditar)
@@ -144,38 +225,26 @@ public class CadastroUsuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonVoltar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelConfirmaSenha)
-                                .addComponent(jLabelEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabelTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelLogin)
-                                .addComponent(jLabelSenha))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelNomeUsuario)
-                                    .addComponent(jLabelSobrenomeUsuario)
-                                    .addComponent(jLabelCPF))
-                                .addGap(5, 5, 5)))
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldLogin, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldSobrenome, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldNome, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordFieldConfirmaSenha)
-                            .addComponent(jFormattedTextFieldTelefone)
-                            .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))))
-                .addContainerGap())
+                        .addComponent(jButtonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jButtonVoltar)
+                        .addGap(34, 34, 34))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(22, 22, 22)
+                .addComponent(jLabelCadastroDeUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPesquisaPeloCpf)
+                    .addComponent(jButtonPesquisar)
+                    .addComponent(jFormattedTextFieldPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNomeUsuario)
                     .addComponent(jFormattedTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -187,7 +256,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCPF)
                     .addComponent(jFormattedTextFieldCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLogin)
                     .addComponent(jFormattedTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -207,17 +276,18 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTelefone)
                     .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonVoltar)
                     .addComponent(jButtonGravar)
                     .addComponent(jButtonExcluir)
                     .addComponent(jButtonEditar)
-                    .addComponent(jButtonNovoUsuario))
-                .addGap(37, 37, 37))
+                    .addComponent(jButtonNovoUsuario)
+                    .addComponent(jButtonCancelar))
+                .addGap(19, 19, 19))
         );
 
-        setSize(new java.awt.Dimension(553, 427));
+        setSize(new java.awt.Dimension(626, 552));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -232,28 +302,36 @@ public class CadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldConfirmaSenhaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        modUsu.setNome(jFormattedTextFieldNome.getText());
-        modUsu.setSobrenome(jFormattedTextFieldSobrenome.getText());
-        //modUsu.setCpf(Integer.parseInt(jFormattedTextFieldCPF.getText()));
-        modUsu.setCpf(jFormattedTextFieldCPF.getText());
-        modUsu.setLogin(jFormattedTextFieldLogin.getText());
-        modUsu.setSenha(jPasswordFieldSenha.getText());
-        modUsu.setEmail(jFormattedTextFieldEmail.getText());
-        modUsu.setTelefone(jFormattedTextFieldTelefone.getText());
-        controlUsu.Gravar(modUsu);
+               
+        if (flag==1){
+           modUsu.setNome(jFormattedTextFieldNome.getText());
+           modUsu.setSobrenome(jFormattedTextFieldSobrenome.getText());
+           modUsu.setCpf(jFormattedTextFieldCPF.getText());
+           modUsu.setLogin(jFormattedTextFieldLogin.getText());
+           modUsu.setSenha(jPasswordFieldSenha.getText());
+           modUsu.setEmail(jFormattedTextFieldEmail.getText());
+           modUsu.setTelefone(jFormattedTextFieldTelefone.getText());
+           controlUsu.Gravar(modUsu);
+
+           jFormattedTextFieldNome.setText("");
+           jFormattedTextFieldSobrenome.setText("");
+           jFormattedTextFieldCPF.setText("");
+           jFormattedTextFieldLogin.setText("");
+           jPasswordFieldSenha.setText("");
+           jPasswordFieldConfirmaSenha.setText("");
+           jFormattedTextFieldEmail.setText("");
+           jFormattedTextFieldTelefone.setText("");
+           jButtonGravar.setEnabled(false);
+        }else{
+            
+        }
         
-        jFormattedTextFieldNome.setText("");
-        jFormattedTextFieldSobrenome.setText("");
-        jFormattedTextFieldCPF.setText("");
-        jFormattedTextFieldLogin.setText("");
-        jPasswordFieldSenha.setText("");
-        jPasswordFieldConfirmaSenha.setText("");
-        jFormattedTextFieldEmail.setText("");
-        jFormattedTextFieldTelefone.setText("");
-        jButtonGravar.setEnabled(false);
+        
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
+        flag =1;    
+        
         jFormattedTextFieldNome.setEnabled(true);
         jFormattedTextFieldSobrenome.setEnabled(true);
         jFormattedTextFieldCPF.setEnabled(true);
@@ -263,8 +341,70 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jFormattedTextFieldEmail.setEnabled(true);
         jFormattedTextFieldTelefone.setEnabled(true);
         jButtonGravar.setEnabled(true);
+        jButtonPesquisar.setEnabled(false);
+        jFormattedTextFieldPesquisa.setEnabled(false);
+        jButtonCancelar.setEnabled(true);
         
     }//GEN-LAST:event_jButtonNovoUsuarioActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        jFormattedTextFieldNome.setEnabled(!true);
+        jFormattedTextFieldSobrenome.setEnabled(!true);
+        jFormattedTextFieldCPF.setEnabled(!true);
+        jFormattedTextFieldLogin.setEnabled(!true);
+        jPasswordFieldSenha.setEnabled(!true);
+        jPasswordFieldConfirmaSenha.setEnabled(!true);
+        jFormattedTextFieldEmail.setEnabled(!true);
+        jFormattedTextFieldTelefone.setEnabled(!true);
+        jFormattedTextFieldPesquisa.setEnabled(!false);
+        jButtonNovoUsuario.setEnabled(true);
+        jButtonGravar.setEnabled(!true);
+        jButtonPesquisar.setEnabled(true);        
+        jButtonExcluir.setEnabled(false);
+        jButtonEditar.setEnabled(false);
+        jButtonCancelar.setEnabled(!true);
+        
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
+        modUsu.setPesquisa(jFormattedTextFieldPesquisa.getText());
+        BeansUsuario modelo = controlUsu.buscaUsuario(modUsu);
+        jTextFieldID.setText(String.valueOf(modelo.getId()));
+        jFormattedTextFieldNome.setText(modelo.getNome());
+        jFormattedTextFieldSobrenome.setText(modelo.getSobrenome());
+        jFormattedTextFieldCPF.setText(modelo.getCpf());
+        jFormattedTextFieldLogin.setText(modelo.getLogin());
+        jPasswordFieldSenha.setText(modelo.getSenha());
+        jPasswordFieldConfirmaSenha.setText(modelo.getSenha());
+        jFormattedTextFieldEmail.setText(modelo.getEmail());
+        jFormattedTextFieldTelefone.setText(modelo.getTelefone());
+        jButtonEditar.setEnabled(true);
+        jButtonExcluir.setEnabled(true);        
+    }//GEN-LAST:event_jButtonPesquisarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        flag =2;
+        
+        jFormattedTextFieldNome.setEnabled(true);
+        jFormattedTextFieldSobrenome.setEnabled(true);
+        jFormattedTextFieldCPF.setEnabled(true);
+        jFormattedTextFieldLogin.setEnabled(true);
+        jPasswordFieldSenha.setEnabled(true);
+        jPasswordFieldConfirmaSenha.setEnabled(true);
+        jFormattedTextFieldEmail.setEnabled(true);
+        jFormattedTextFieldTelefone.setEnabled(true);
+        jButtonGravar.setEnabled(true);
+        jButtonPesquisar.setEnabled(false);
+        jFormattedTextFieldPesquisa.setEnabled(false);
+        jButtonCancelar.setEnabled(true);
+        jButtonEditar.setEnabled(false);
+        jButtonNovoUsuario.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,27 +450,34 @@ public class CadastroUsuario extends javax.swing.JFrame {
     public String telefone;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovoUsuario;
+    private javax.swing.JButton jButtonPesquisar;
     private javax.swing.JButton jButtonVoltar;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF;
     private javax.swing.JFormattedTextField jFormattedTextFieldEmail;
     private javax.swing.JFormattedTextField jFormattedTextFieldLogin;
     private javax.swing.JFormattedTextField jFormattedTextFieldNome;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPesquisa;
     private javax.swing.JFormattedTextField jFormattedTextFieldSobrenome;
     private javax.swing.JFormattedTextField jFormattedTextFieldTelefone;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCPF;
+    private javax.swing.JLabel jLabelCadastroDeUsuario;
     private javax.swing.JLabel jLabelConfirmaSenha;
     private javax.swing.JLabel jLabelEmail;
     private javax.swing.JLabel jLabelLogin;
     private javax.swing.JLabel jLabelNomeUsuario;
+    private javax.swing.JLabel jLabelPesquisaPeloCpf;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelSobrenomeUsuario;
     private javax.swing.JLabel jLabelTelefone;
     private javax.swing.JPasswordField jPasswordFieldConfirmaSenha;
     private javax.swing.JPasswordField jPasswordFieldSenha;
+    private javax.swing.JTextField jTextFieldID;
     // End of variables declaration//GEN-END:variables
 }

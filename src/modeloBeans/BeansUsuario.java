@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package modeloBeans;
 
 /**
  *
  * @author backdoors
  */
-public class ModeloUsuario {
-   
+public class BeansUsuario {
+    
     private String nome;
     private String sobrenome;
     private String cpf;
@@ -18,6 +18,36 @@ public class ModeloUsuario {
     private String senha;
     private String email;
     private String telefone;
+    private String pesquisa; 
+    private int id;    
+    
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the pesquisa
+     */
+    public String getPesquisa() {
+        return pesquisa;
+    }
+
+    /**
+     * @param pesquisa the pesquisa to set
+     */
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
+    }
 
     /**
      * @return the nome

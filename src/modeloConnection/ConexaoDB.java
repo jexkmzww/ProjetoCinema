@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package modeloConnection;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -31,6 +31,16 @@ public class ConexaoDB {
             JOptionPane.showMessageDialog(null, "Erro ao conectar com o banco de dados:\n" + ex.getMessage());
         }
     }
+    
+    public void executaSql (String sql){
+        try {
+            statement = connection.createStatement(resultSet.TYPE_SCROLL_INSENSITIVE, resultSet.CONCUR_READ_ONLY);
+            resultSet = statement.executeQuery(sql);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao executar o SQL:\n" + ex.getMessage());
+        }
+    }
+    
     
     public void desconecta (){
         try {

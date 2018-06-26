@@ -5,7 +5,7 @@
  */
 package ProjetoCinema;
 
-import Controle.ConexaoDB;
+import modeloConnection.ConexaoDB;
 
 /**
  *
