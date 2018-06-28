@@ -5,22 +5,31 @@
  */
 package ProjetoCinema;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modeloBeans.BeansFilme;
 import modeloConnection.ConexaoDB;
+import modeloDao.DaoFilme;
+
 
 /**
  *
  * @author backdoors
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
-    ConexaoDB conectaDB = new ConexaoDB();
-     
+    
+    ConexaoDB conect = new ConexaoDB();
+    BeansFilme modeloFilme;
+    DaoFilme controlFilme;
+    
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
-        conectaDB.conexao();
+        conect.conexao();
     }
 
     /**
@@ -190,7 +199,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemTrocarUsuarioActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
-        conectaDB.desconecta();
+        conect.desconecta();
         System.exit(0);
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
@@ -201,44 +210,81 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemMenuPrincipalActionPerformed
 
     private void jButton127horasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton127horasActionPerformed
-        DetalhesFilme detalhesFilme = new DetalhesFilme();  
-        detalhesFilme.recebeFoto(this.jButton127horas.getIcon());
-        detalhesFilme.setVisible(true);
+     
+        controlFilme = new DaoFilme();
+        try {
+            modeloFilme = controlFilme.Ler(1);
+            DetalhesFilme detalhesFilme = new DetalhesFilme(modeloFilme);  
+            detalhesFilme.recebeFoto(this.jButton127horas.getIcon());
+            detalhesFilme.setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao abrir filme!\nErro: "+ex.getMessage());
+        }
         dispose();
     }//GEN-LAST:event_jButton127horasActionPerformed
 
     private void jButtonAHospedeiraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAHospedeiraActionPerformed
-        DetalhesFilme detalhesFilme = new DetalhesFilme();  
-        detalhesFilme.recebeFoto(this.jButtonAHospedeira.getIcon());
-        detalhesFilme.setVisible(true);
+        controlFilme = new DaoFilme();
+        try {
+            modeloFilme = controlFilme.Ler(2);
+            DetalhesFilme detalhesFilme = new DetalhesFilme(modeloFilme);  
+            detalhesFilme.recebeFoto(this.jButtonAHospedeira.getIcon());
+            detalhesFilme.setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao abrir filme!\nErro: "+ex.getMessage());
+        }
         dispose();
     }//GEN-LAST:event_jButtonAHospedeiraActionPerformed
 
     private void jButtonFastNFuriousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFastNFuriousActionPerformed
-        DetalhesFilme detalhesFilme = new DetalhesFilme();  
-        detalhesFilme.recebeFoto(this.jButtonFastNFurious.getIcon());
-        detalhesFilme.setVisible(true);
+        controlFilme = new DaoFilme();
+        try {
+            modeloFilme = controlFilme.Ler(3);
+            DetalhesFilme detalhesFilme = new DetalhesFilme(modeloFilme);  
+            detalhesFilme.recebeFoto(this.jButtonFastNFurious.getIcon());
+            detalhesFilme.setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao abrir filme!\nErro: "+ex.getMessage());
+        }
         dispose();
     }//GEN-LAST:event_jButtonFastNFuriousActionPerformed
 
     private void jButtonMeuNomeNaoEJhonnyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMeuNomeNaoEJhonnyActionPerformed
-        DetalhesFilme detalhesFilme = new DetalhesFilme();  
-        detalhesFilme.recebeFoto(this.jButtonMeuNomeNaoEJhonny.getIcon());
-        detalhesFilme.setVisible(true);
+        controlFilme = new DaoFilme();
+        try {
+            modeloFilme = controlFilme.Ler(4);
+            DetalhesFilme detalhesFilme = new DetalhesFilme(modeloFilme);  
+            detalhesFilme.recebeFoto(this.jButtonMeuNomeNaoEJhonny.getIcon());
+            detalhesFilme.setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao abrir filme!\nErro: "+ex.getMessage());
+        }
         dispose();
     }//GEN-LAST:event_jButtonMeuNomeNaoEJhonnyActionPerformed
 
     private void jButtonStarWarsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStarWarsActionPerformed
-        DetalhesFilme detalhesFilme = new DetalhesFilme();  
-        detalhesFilme.recebeFoto(this.jButtonStarWars.getIcon());
-        detalhesFilme.setVisible(true);
+        controlFilme = new DaoFilme();
+        try {
+            modeloFilme = controlFilme.Ler(5);
+            DetalhesFilme detalhesFilme = new DetalhesFilme(modeloFilme);  
+            detalhesFilme.recebeFoto(this.jButtonStarWars.getIcon());
+            detalhesFilme.setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao abrir filme!\nErro: "+ex.getMessage());
+        }
         dispose();
     }//GEN-LAST:event_jButtonStarWarsActionPerformed
 
     private void jButtonTheDarkKnightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTheDarkKnightActionPerformed
-        DetalhesFilme detalhesFilme = new DetalhesFilme();  
-        detalhesFilme.recebeFoto(this.jButtonTheDarkKnight.getIcon());
-        detalhesFilme.setVisible(true);
+        controlFilme = new DaoFilme();
+        try {
+            modeloFilme = controlFilme.Ler(6);
+            DetalhesFilme detalhesFilme = new DetalhesFilme(modeloFilme);  
+            detalhesFilme.recebeFoto(this.jButtonTheDarkKnight.getIcon());
+            detalhesFilme.setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao abrir filme!\nErro: "+ex.getMessage());
+        }
         dispose();
     }//GEN-LAST:event_jButtonTheDarkKnightActionPerformed
 

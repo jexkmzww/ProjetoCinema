@@ -90,6 +90,11 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jFormattedTextFieldCPF.setEnabled(false);
 
         jFormattedTextFieldNome.setEnabled(false);
+        jFormattedTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldNomeActionPerformed(evt);
+            }
+        });
 
         jFormattedTextFieldSobrenome.setEnabled(false);
 
@@ -545,6 +550,10 @@ public class CadastroUsuario extends javax.swing.JFrame {
             jFormattedTextFieldPesquisa.setText("");
         }
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jFormattedTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldNomeActionPerformed
 
     /**
      * @param args the command line arguments

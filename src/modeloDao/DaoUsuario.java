@@ -20,18 +20,18 @@ public class DaoUsuario {
     ConexaoDB conex = new ConexaoDB();
     BeansUsuario modeloUsuario = new BeansUsuario();
     
-    public void Gravar (BeansUsuario modeloUsu){
+    public void Gravar (BeansUsuario mod){
         conex.conexao();
         try {
             PreparedStatement pst = conex.connection.prepareStatement("INSERT INTO usuario (nome_usu, sobrenome_usu, cpf_usu, login_usu, senha_usu, email_usu, telefone_usu) "
                     + "                                                VALUES (?, ?, ?, ?, ?, ?, ?)");
-            pst.setString(1, modeloUsu.getNome());
-            pst.setString(2, modeloUsu.getSobrenome());
-            pst.setString(3, modeloUsu.getCpf());
-            pst.setString(4, modeloUsu.getLogin());
-            pst.setString(5, modeloUsu.getSenha());
-            pst.setString(6, modeloUsu.getEmail());
-            pst.setString(7, modeloUsu.getTelefone());         
+            pst.setString(1, mod.getNome());
+            pst.setString(2, mod.getSobrenome());
+            pst.setString(3, mod.getCpf());
+            pst.setString(4, mod.getLogin());
+            pst.setString(5, mod.getSenha());
+            pst.setString(6, mod.getEmail());
+            pst.setString(7, mod.getTelefone());         
             pst.execute();
             JOptionPane.showMessageDialog(null, "Usuário gravado com sucesso!");
         } catch (SQLException ex) {
@@ -42,7 +42,9 @@ public class DaoUsuario {
     
     public BeansUsuario buscaUsuario (BeansUsuario mod){
         conex.conexao();
-        conex.executaSql("SELECT * FROM USUARIO WHERE cpf_usu LIKE '%" + mod.getPesquisa()+"%'");
+        conex.executaSql("SELECT * "
+                + "       FROM usuario "
+                + "       WHERE cpf_usu LIKE '%" + mod.getPesquisa()+"%'");
         try {
             conex.resultSet.first();
             mod.setId(conex.resultSet.getInt("id_usu"));

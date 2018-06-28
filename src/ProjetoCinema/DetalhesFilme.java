@@ -6,18 +6,36 @@
 package ProjetoCinema;
 
 import javax.swing.Icon;
+import modeloBeans.BeansFilme;
+import modeloConnection.ConexaoDB;
+import modeloDao.DaoFilme;
 
 /**
  *
  * @author backdoors
  */
 public class DetalhesFilme extends javax.swing.JFrame {
-
+    
+    
+    BeansFilme modFilme = new BeansFilme();
+    DaoFilme controlFilme = new DaoFilme();
+    ConexaoDB conect = new ConexaoDB();     
+    
+    
     /**
      * Creates new form DetalhesFilme
+     * @param filme
      */
-    public DetalhesFilme() {
+    public DetalhesFilme(BeansFilme filme) {
         initComponents();
+        conect.conexao();  
+        jLabelDataLancamento.setText(filme.getDataLancamento());
+        jLabelDirecao.setText(filme.getDirecao());
+        jLabelClassificacao.setText(filme.getClassificacao());
+        jLabelGenero.setText(filme.getGenero());
+        jLabelNacionalidade.setText(filme.getNacionalidade());
+        jLabelIdioma.setText(filme.getIdioma()); 
+        jTextAreaSinopse.setText(filme.getSinopse());
     }
 
     /**
@@ -37,9 +55,9 @@ public class DetalhesFilme extends javax.swing.JFrame {
         jLabelGenero = new javax.swing.JLabel();
         jLabelNacionalidade = new javax.swing.JLabel();
         jLabelIdioma = new javax.swing.JLabel();
-        jLabelPreco = new javax.swing.JLabel();
         jLabelSinopse = new javax.swing.JLabel();
-        jTextFieldSinopse = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaSinopse = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Compra");
@@ -69,25 +87,28 @@ public class DetalhesFilme extends javax.swing.JFrame {
 
         jLabelIdioma.setText("idioma");
 
-        jLabelPreco.setText("preco");
-
         jLabelSinopse.setText("Sinopse:");
+
+        jTextAreaSinopse.setEditable(false);
+        jTextAreaSinopse.setColumns(20);
+        jTextAreaSinopse.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaSinopse);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonVoltar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(271, 271, 271)
                                 .addComponent(jLabelSinopse))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(jButtonFotoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(160, 160, 160)
@@ -97,12 +118,11 @@ public class DetalhesFilme extends javax.swing.JFrame {
                                     .addComponent(jLabelClassificacao)
                                     .addComponent(jLabelGenero)
                                     .addComponent(jLabelNacionalidade)
-                                    .addComponent(jLabelIdioma)
-                                    .addComponent(jLabelPreco))))
+                                    .addComponent(jLabelIdioma))))
                         .addGap(0, 134, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(jTextFieldSinopse)))
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,14 +144,12 @@ public class DetalhesFilme extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelNacionalidade)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelIdioma)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelPreco)))
+                        .addComponent(jLabelIdioma)))
                 .addGap(8, 8, 8)
                 .addComponent(jLabelSinopse)
-                .addGap(9, 9, 9)
-                .addComponent(jTextFieldSinopse, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonVoltar)
                 .addContainerGap())
         );
@@ -141,10 +159,7 @@ public class DetalhesFilme extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonFotoFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFotoFilmeActionPerformed
-        DetalhesFilme detalhesFilme = new DetalhesFilme();
-        detalhesFilme.recebeFoto(this.jButtonFotoFilme.getIcon());
-        detalhesFilme.setVisible(true);
-        dispose();
+        
     }//GEN-LAST:event_jButtonFotoFilmeActionPerformed
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
@@ -187,7 +202,7 @@ public class DetalhesFilme extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DetalhesFilme().setVisible(true);
+                new DetalhesFilme(null).setVisible(true);
             }
         });
     }
@@ -201,8 +216,8 @@ public class DetalhesFilme extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelGenero;
     private javax.swing.JLabel jLabelIdioma;
     private javax.swing.JLabel jLabelNacionalidade;
-    private javax.swing.JLabel jLabelPreco;
     private javax.swing.JLabel jLabelSinopse;
-    private javax.swing.JTextField jTextFieldSinopse;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaSinopse;
     // End of variables declaration//GEN-END:variables
 }

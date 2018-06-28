@@ -1,0 +1,8 @@
+﻿ALTER TABLE filme ALTER COLUMN nome_filme TYPE character varying(100);
+ALTER TABLE filme ALTER COLUMN datal_filme TYPE character varying(100)
+ALTER TABLE filme ALTER COLUMN direcao_filme TYPE character varying(100)
+ALTER TABLE filme ALTER COLUMN classificacao_filme TYPE character varying(100)
+ALTER TABLE filme ALTER COLUMN genero_filme TYPE character varying(100)
+ALTER TABLE filme ALTER COLUMN nacionalidade_filme TYPE character varying(100)
+ALTER TABLE filme ALTER COLUMN idioma_filme TYPE character varying(100)
+ALTER TABLE filme ALTER COLUMN sinopse_filme TYPE character varying(5000);

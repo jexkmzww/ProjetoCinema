@@ -1,0 +1,13 @@
+﻿CREATE TABLE filme
+(
+  nome_filme character varying(50) NOT NULL,
+  datal_filme character varying(20) NOT NULL,
+  direcao_filme character varying(20) NOT NULL,
+  classificacao_filme character varying(20) NOT NULL,
+  genero_filme character varying(20) NOT NULL,
+  nacionalidade_filme character varying(20) NOT NULL,
+  idioma_filme character varying(20) NOT NULL,
+  sinopse_filme character varying(500) NOT NULL,
+  id_filme integer NOT NULL DEFAULT nextval('filme_id_filme_seq'::regclass),
+  CONSTRAINT filme_pkey PRIMARY KEY (id_filme)
+)
