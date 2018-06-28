@@ -5,6 +5,7 @@
  */
 package ProjetoCinema;
 
+import javax.swing.JOptionPane;
 import modeloConnection.ConexaoDB;
 import modeloDao.DaoUsuario;
 import modeloBeans.BeansUsuario;
@@ -124,6 +125,11 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.setEnabled(false);
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jButtonEditar.setText("Editar");
         jButtonEditar.setEnabled(false);
@@ -153,6 +159,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         });
 
         jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setEnabled(false);
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelarActionPerformed(evt);
@@ -302,34 +309,115 @@ public class CadastroUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordFieldConfirmaSenhaActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-               
-        if (flag==1){
-           modUsu.setNome(jFormattedTextFieldNome.getText());
-           modUsu.setSobrenome(jFormattedTextFieldSobrenome.getText());
-           modUsu.setCpf(jFormattedTextFieldCPF.getText());
-           modUsu.setLogin(jFormattedTextFieldLogin.getText());
-           modUsu.setSenha(jPasswordFieldSenha.getText());
-           modUsu.setEmail(jFormattedTextFieldEmail.getText());
-           modUsu.setTelefone(jFormattedTextFieldTelefone.getText());
-           controlUsu.Gravar(modUsu);
-
-           jFormattedTextFieldNome.setText("");
-           jFormattedTextFieldSobrenome.setText("");
-           jFormattedTextFieldCPF.setText("");
-           jFormattedTextFieldLogin.setText("");
-           jPasswordFieldSenha.setText("");
-           jPasswordFieldConfirmaSenha.setText("");
-           jFormattedTextFieldEmail.setText("");
-           jFormattedTextFieldTelefone.setText("");
-           jButtonGravar.setEnabled(false);
+        
+        if (jFormattedTextFieldNome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha o nome do usuário!");
+            jFormattedTextFieldNome.requestFocus();
+        }else if(jFormattedTextFieldSobrenome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha o sobrenome do usuário!");
+            jFormattedTextFieldSobrenome.requestFocus();
+        }else if(jFormattedTextFieldCPF.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha o CPF do usuário!");
+            jFormattedTextFieldCPF.requestFocus();
+        }else if(jFormattedTextFieldLogin.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha o login do usuário!");
+            jFormattedTextFieldLogin.requestFocus();
+        }else if(jPasswordFieldSenha.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha a senha do usuário!");
+            jPasswordFieldSenha.requestFocus();
+        }else if(jFormattedTextFieldEmail.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha o e-mail do usuário!");
+            jFormattedTextFieldEmail.requestFocus();
+        }else if(jFormattedTextFieldTelefone.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha o telefone do usuário!");
+            jFormattedTextFieldTelefone.requestFocus();
         }else{
             
+            if (jPasswordFieldSenha.getText().equals(jPasswordFieldConfirmaSenha.getText())){
+                if (flag==1){
+                modUsu.setNome(jFormattedTextFieldNome.getText());
+                modUsu.setSobrenome(jFormattedTextFieldSobrenome.getText());
+                modUsu.setCpf(jFormattedTextFieldCPF.getText());
+                modUsu.setLogin(jFormattedTextFieldLogin.getText());
+                modUsu.setSenha(jPasswordFieldSenha.getText());
+                modUsu.setEmail(jFormattedTextFieldEmail.getText());
+                modUsu.setTelefone(jFormattedTextFieldTelefone.getText());
+                controlUsu.Gravar(modUsu);
+
+                jTextFieldID.setText("");
+                jFormattedTextFieldNome.setText("");
+                jFormattedTextFieldSobrenome.setText("");
+                jFormattedTextFieldCPF.setText("");
+                jFormattedTextFieldLogin.setText("");
+                jPasswordFieldSenha.setText("");
+                jPasswordFieldConfirmaSenha.setText("");
+                jFormattedTextFieldEmail.setText("");
+                jFormattedTextFieldTelefone.setText("");
+                jFormattedTextFieldPesquisa.setText("");
+
+                jFormattedTextFieldNome.setEnabled(!true);
+                jFormattedTextFieldSobrenome.setEnabled(!true);
+                jFormattedTextFieldCPF.setEnabled(!true);
+                jFormattedTextFieldLogin.setEnabled(!true);
+                jPasswordFieldSenha.setEnabled(!true);
+                jPasswordFieldConfirmaSenha.setEnabled(!true);
+                jFormattedTextFieldEmail.setEnabled(!true);
+                jFormattedTextFieldTelefone.setEnabled(!true);
+                jFormattedTextFieldPesquisa.setEnabled(!false);
+                jButtonNovoUsuario.setEnabled(true);
+                jButtonGravar.setEnabled(!true);
+                jButtonPesquisar.setEnabled(true);        
+                jButtonExcluir.setEnabled(false);
+                jButtonEditar.setEnabled(false);
+                jButtonCancelar.setEnabled(!true);
+
+
+                }else{
+                modUsu.setId(Integer.parseInt(jTextFieldID.getText()));
+                modUsu.setNome(jFormattedTextFieldNome.getText());
+                modUsu.setSobrenome(jFormattedTextFieldSobrenome.getText());
+                modUsu.setCpf(jFormattedTextFieldCPF.getText());
+                modUsu.setLogin(jFormattedTextFieldLogin.getText());
+                modUsu.setSenha(jPasswordFieldSenha.getText());
+                modUsu.setEmail(jFormattedTextFieldEmail.getText());
+                modUsu.setTelefone(jFormattedTextFieldTelefone.getText());
+                controlUsu.Editar(modUsu);
+
+                jTextFieldID.setText("");
+                jFormattedTextFieldNome.setText("");
+                jFormattedTextFieldSobrenome.setText("");
+                jFormattedTextFieldCPF.setText("");
+                jFormattedTextFieldLogin.setText("");
+                jPasswordFieldSenha.setText("");
+                jPasswordFieldConfirmaSenha.setText("");
+                jFormattedTextFieldEmail.setText("");
+                jFormattedTextFieldTelefone.setText("");
+                jFormattedTextFieldPesquisa.setText("");
+
+                jFormattedTextFieldNome.setEnabled(!true);
+                jFormattedTextFieldSobrenome.setEnabled(!true);
+                jFormattedTextFieldCPF.setEnabled(!true);
+                jFormattedTextFieldLogin.setEnabled(!true);
+                jPasswordFieldSenha.setEnabled(!true);
+                jPasswordFieldConfirmaSenha.setEnabled(!true);
+                jFormattedTextFieldEmail.setEnabled(!true);
+                jFormattedTextFieldTelefone.setEnabled(!true);
+                jFormattedTextFieldPesquisa.setEnabled(!false);
+                jButtonNovoUsuario.setEnabled(true);
+                jButtonGravar.setEnabled(!true);
+                jButtonPesquisar.setEnabled(true);        
+                jButtonExcluir.setEnabled(false);
+                jButtonEditar.setEnabled(false);
+                jButtonCancelar.setEnabled(!true);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"As senhas devem ser iguais!");
+            }
         }
-        
-        
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoUsuarioActionPerformed
+        
         flag =1;    
         
         jFormattedTextFieldNome.setEnabled(true);
@@ -364,22 +452,40 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jButtonEditar.setEnabled(false);
         jButtonCancelar.setEnabled(!true);
         
+        jTextFieldID.setText("");
+        jFormattedTextFieldNome.setText("");
+        jFormattedTextFieldSobrenome.setText("");
+        jFormattedTextFieldCPF.setText("");
+        jFormattedTextFieldLogin.setText("");
+        jPasswordFieldSenha.setText("");
+        jPasswordFieldConfirmaSenha.setText("");
+        jFormattedTextFieldEmail.setText("");
+        jFormattedTextFieldTelefone.setText("");
+        jFormattedTextFieldPesquisa.setText("");
+        
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-        modUsu.setPesquisa(jFormattedTextFieldPesquisa.getText());
-        BeansUsuario modelo = controlUsu.buscaUsuario(modUsu);
-        jTextFieldID.setText(String.valueOf(modelo.getId()));
-        jFormattedTextFieldNome.setText(modelo.getNome());
-        jFormattedTextFieldSobrenome.setText(modelo.getSobrenome());
-        jFormattedTextFieldCPF.setText(modelo.getCpf());
-        jFormattedTextFieldLogin.setText(modelo.getLogin());
-        jPasswordFieldSenha.setText(modelo.getSenha());
-        jPasswordFieldConfirmaSenha.setText(modelo.getSenha());
-        jFormattedTextFieldEmail.setText(modelo.getEmail());
-        jFormattedTextFieldTelefone.setText(modelo.getTelefone());
-        jButtonEditar.setEnabled(true);
-        jButtonExcluir.setEnabled(true);        
+
+         if (jFormattedTextFieldPesquisa.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Preencha o CPF para pesquisar!");
+            jFormattedTextFieldPesquisa.requestFocus();
+         }else{
+            modUsu.setPesquisa(jFormattedTextFieldPesquisa.getText());
+            BeansUsuario modelo = controlUsu.buscaUsuario(modUsu);
+            jTextFieldID.setText(String.valueOf(modelo.getId()));
+            jFormattedTextFieldNome.setText(modelo.getNome());
+            jFormattedTextFieldSobrenome.setText(modelo.getSobrenome());
+            jFormattedTextFieldCPF.setText(modelo.getCpf());
+            jFormattedTextFieldLogin.setText(modelo.getLogin());
+            jPasswordFieldSenha.setText(modelo.getSenha());
+            jPasswordFieldConfirmaSenha.setText(modelo.getSenha());
+            jFormattedTextFieldEmail.setText(modelo.getEmail());
+            jFormattedTextFieldTelefone.setText(modelo.getTelefone());
+            jButtonEditar.setEnabled(true);
+            jButtonExcluir.setEnabled(true);  
+         }
+        
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
@@ -405,6 +511,40 @@ public class CadastroUsuario extends javax.swing.JFrame {
     private void jTextFieldIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldIDActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int temp =0;
+        temp = JOptionPane.showConfirmDialog(rootPane,"Deseja realmente excluir o usuário?");
+        if (temp == JOptionPane.YES_OPTION){
+            modUsu.setId(Integer.parseInt(jTextFieldID.getText()));
+            controlUsu.Excluir(modUsu);
+            jFormattedTextFieldNome.setEnabled(!true);
+            jFormattedTextFieldSobrenome.setEnabled(!true);
+            jFormattedTextFieldCPF.setEnabled(!true);
+            jFormattedTextFieldLogin.setEnabled(!true);
+            jPasswordFieldSenha.setEnabled(!true);
+            jPasswordFieldConfirmaSenha.setEnabled(!true);
+            jFormattedTextFieldEmail.setEnabled(!true);
+            jFormattedTextFieldTelefone.setEnabled(!true);
+            jFormattedTextFieldPesquisa.setEnabled(!false);
+            jButtonNovoUsuario.setEnabled(true);
+            jButtonGravar.setEnabled(!true);
+            jButtonPesquisar.setEnabled(true);        
+            jButtonExcluir.setEnabled(false);
+            jButtonEditar.setEnabled(false);
+            jButtonCancelar.setEnabled(!true);
+            jTextFieldID.setText("");
+            jFormattedTextFieldNome.setText("");
+            jFormattedTextFieldSobrenome.setText("");
+            jFormattedTextFieldCPF.setText("");
+            jFormattedTextFieldLogin.setText("");
+            jPasswordFieldSenha.setText("");
+            jPasswordFieldConfirmaSenha.setText("");
+            jFormattedTextFieldEmail.setText("");
+            jFormattedTextFieldTelefone.setText("");
+            jFormattedTextFieldPesquisa.setText("");
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments

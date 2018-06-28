@@ -5,23 +5,28 @@
  */
 package ProjetoCinema;
 
-import java.awt.Color;
+
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import modeloConnection.ConexaoDB;
 /**
  *
  * @author backdoors
  */
 public class Login extends javax.swing.JFrame {
-
+    
+    ConexaoDB con = new ConexaoDB();
+    
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        con.conexao();
     }
 
     /**
@@ -34,9 +39,9 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonEntrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jButtonSair = new javax.swing.JButton();
+        jLabelLogin = new javax.swing.JLabel();
+        jLabelSenha = new javax.swing.JLabel();
         jTextFieldLogin = new javax.swing.JTextField();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
         jLabelFundoLogin = new javax.swing.JLabel();
@@ -52,26 +57,26 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonEntrar);
-        jButtonEntrar.setBounds(450, 240, 130, 29);
+        jButtonEntrar.setBounds(450, 233, 130, 30);
 
-        jButton1.setText("Sair");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonSairActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(290, 240, 140, 29);
+        getContentPane().add(jButtonSair);
+        jButtonSair.setBounds(290, 233, 140, 30);
 
-        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("LOGIN:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(100, 90, 60, 17);
+        jLabelLogin.setForeground(new java.awt.Color(254, 254, 254));
+        jLabelLogin.setText("LOGIN:");
+        getContentPane().add(jLabelLogin);
+        jLabelLogin.setBounds(80, 90, 60, 14);
 
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setText("SENHA:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(90, 130, 80, 17);
+        jLabelSenha.setForeground(new java.awt.Color(254, 254, 254));
+        jLabelSenha.setText("SENHA:");
+        getContentPane().add(jLabelSenha);
+        jLabelSenha.setBounds(80, 140, 80, 14);
 
         jTextFieldLogin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -79,7 +84,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldLogin);
-        jTextFieldLogin.setBounds(160, 80, 390, 27);
+        jTextFieldLogin.setBounds(140, 80, 420, 30);
 
         jPasswordFieldSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -87,7 +92,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jPasswordFieldSenha);
-        jPasswordFieldSenha.setBounds(160, 120, 390, 27);
+        jPasswordFieldSenha.setBounds(140, 130, 420, 30);
 
         jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo-preto-brilhante_1053-680.jpg"))); // NOI18N
         jLabelFundoLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -101,31 +106,30 @@ public class Login extends javax.swing.JFrame {
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         
-        if (jTextFieldLogin.getText().equals("adm") && jPasswordFieldSenha.getText().equals("adm")) {
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
-            telaPrincipal.setVisible(true);
-            dispose();
+        try {
+            con.executaSql("SELECT *"
+                + "         FROM usuario"
+                + "         WHERE login_usu='"+jTextFieldLogin.getText()+"'");
+            con.resultSet.first();
+            if (con.resultSet.getString("senha_usu").equals(jPasswordFieldSenha.getText())){
+                TelaPrincipal telaPrincipal = new TelaPrincipal();
+                telaPrincipal.setVisible(true);
+                dispose();
+            }else{
+                JOptionPane.showMessageDialog(rootPane,"Usuário ou senha inválido(s)!");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,"Usuário ou senha inválido(s)!");
         }
-        
-        else    {
-            jTextFieldLogin.setBackground(Color.red);
-            jTextFieldLogin.setText("");   
-            jPasswordFieldSenha.setBackground(Color.red);
-            jPasswordFieldSenha.setText("");
-            JOptionPane.showMessageDialog(rootPane, "Login ou senha incorretos!");            
-        }       
-     
+       
     }//GEN-LAST:event_jButtonEntrarActionPerformed
-
-    
-    
     
     public JButton getjButton1() {
-        return jButton1;
+        return jButtonSair;
     }
 
     public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
+        this.jButtonSair = jButton1;
     }
 
     public JButton getjButtonEntrar() {
@@ -137,19 +141,19 @@ public class Login extends javax.swing.JFrame {
     }
 
     public JLabel getjLabel1() {
-        return jLabel1;
+        return jLabelLogin;
     }
 
     public void setjLabel1(JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
+        this.jLabelLogin = jLabel1;
     }
 
     public JLabel getjLabel2() {
-        return jLabel2;
+        return jLabelSenha;
     }
 
     public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
+        this.jLabelSenha = jLabel2;
     }
 
     public JLabel getjLabelFundoLogin() {
@@ -176,9 +180,9 @@ public class Login extends javax.swing.JFrame {
         this.jTextFieldLogin = jTextFieldLogin;
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jTextFieldLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLoginKeyPressed
         if (evt.getKeyCode()== evt.VK_ENTER) {
@@ -228,11 +232,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEntrar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabelFundoLogin;
+    private javax.swing.JLabel jLabelLogin;
+    private javax.swing.JLabel jLabelSenha;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JTextField jTextFieldLogin;
     // End of variables declaration//GEN-END:variables
